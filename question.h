@@ -7,19 +7,20 @@ class Question
 {
 public:
     explicit Question(QString);
-    void setText(QString text);
-    void setAnswerExplanation(QString text);
-    void setType();
+    void setText(QString number);
+    void setAnswerExplanation(QString number);
+    void setType(int type);
     int getType();
     QString getQuestion();
     QString getExplanation();
     QString toString();
+    QString getText();
     ~Question();
 private:
     QString questionText;
     QString answerExplanation;
-    QString questionType;
-    QString text;
+    int questionType;
+    QString number;
 };
 
 #endif // QUESTION_H
