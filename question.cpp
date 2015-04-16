@@ -9,6 +9,7 @@ Question::Question(QString s)
 }
 void Question::setText(QString text){
     this->questionText=text;
+
 }
 
 void Question::setAnswerExplanation(QString text)

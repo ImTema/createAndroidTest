@@ -19,7 +19,7 @@
      <rect>
       <x>10</x>
       <y>10</y>
-      <width>791</width>
+      <width>801</width>
       <height>401</height>
      </rect>
     </property>
@@ -27,7 +27,7 @@
      <enum>QTabWidget::West</enum>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -48,9 +48,24 @@
        <rect>
         <x>270</x>
         <y>30</y>
-        <width>481</width>
-        <height>371</height>
+        <width>491</width>
+        <height>331</height>
        </rect>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="sizeIncrement">
+       <size>
+        <width>0</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="sizeAdjustPolicy">
+       <enum>QAbstractScrollArea::AdjustToContents</enum>
       </property>
       <property name="widgetResizable">
        <bool>true</bool>
@@ -60,11 +75,11 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>479</width>
-         <height>369</height>
+         <width>489</width>
+         <height>329</height>
         </rect>
        </property>
-       <widget class="QComboBox" name="comboBox">
+       <widget class="QComboBox" name="questionTypeComboBox">
         <property name="geometry">
          <rect>
           <x>10</x>
@@ -117,14 +132,32 @@
          <string>Текст вопроса</string>
         </property>
        </widget>
-       <widget class="QTextEdit" name="textEdit">
+       <widget class="QTextEdit" name="questionTextTextEdit">
         <property name="geometry">
          <rect>
           <x>10</x>
           <y>70</y>
-          <width>461</width>
+          <width>471</width>
           <height>51</height>
          </rect>
+        </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>471</width>
+          <height>51</height>
+         </size>
+        </property>
+        <property name="sizeAdjustPolicy">
+         <enum>QAbstractScrollArea::AdjustToContents</enum>
+        </property>
+        <property name="lineWrapColumnOrWidth">
+         <number>0</number>
         </property>
        </widget>
        <widget class="QLabel" name="label_2">
@@ -140,16 +173,6 @@
          <string>Пояснение к ответу</string>
         </property>
        </widget>
-       <widget class="QTextEdit" name="textEdit_2">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>150</y>
-          <width>461</width>
-          <height>51</height>
-         </rect>
-        </property>
-       </widget>
        <widget class="QLabel" name="label_3">
         <property name="geometry">
          <rect>
@@ -163,153 +186,43 @@
          <string>Введите возможные ответы</string>
         </property>
        </widget>
-       <widget class="QWidget" name="answersWidget" native="true">
+       <widget class="QTextEdit" name="explanationTextTextEdit">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>150</y>
+          <width>471</width>
+          <height>51</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QWidget" name="verticalLayoutWidget">
         <property name="geometry">
          <rect>
           <x>10</x>
           <y>230</y>
-          <width>461</width>
-          <height>111</height>
+          <width>471</width>
+          <height>80</height>
          </rect>
         </property>
-        <widget class="QWidget" name="widget_3" native="true">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>10</y>
-           <width>441</width>
-           <height>41</height>
-          </rect>
-         </property>
-         <widget class="QRadioButton" name="radioButton_2">
-          <property name="geometry">
-           <rect>
-            <x>170</x>
-            <y>10</y>
-            <width>82</width>
-            <height>17</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string>Правильный</string>
-          </property>
-         </widget>
-         <widget class="QLineEdit" name="lineEdit_4">
-          <property name="geometry">
-           <rect>
-            <x>260</x>
-            <y>10</y>
-            <width>21</width>
-            <height>20</height>
-           </rect>
-          </property>
-         </widget>
-         <widget class="QLabel" name="label_4">
-          <property name="geometry">
-           <rect>
-            <x>290</x>
-            <y>10</y>
-            <width>71</width>
-            <height>16</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string>Стоимость</string>
-          </property>
-         </widget>
-         <widget class="QLineEdit" name="lineEdit_3">
-          <property name="geometry">
-           <rect>
-            <x>10</x>
-            <y>10</y>
-            <width>141</width>
-            <height>20</height>
-           </rect>
-          </property>
-         </widget>
-        </widget>
-        <widget class="QWidget" name="widget_4" native="true">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>50</y>
-           <width>441</width>
-           <height>41</height>
-          </rect>
-         </property>
-         <widget class="QRadioButton" name="radioButton_3">
-          <property name="geometry">
-           <rect>
-            <x>170</x>
-            <y>10</y>
-            <width>82</width>
-            <height>17</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string>Правильный</string>
-          </property>
-         </widget>
-         <widget class="QLineEdit" name="lineEdit_5">
-          <property name="geometry">
-           <rect>
-            <x>260</x>
-            <y>10</y>
-            <width>21</width>
-            <height>20</height>
-           </rect>
-          </property>
-         </widget>
-         <widget class="QLabel" name="label_5">
-          <property name="geometry">
-           <rect>
-            <x>290</x>
-            <y>10</y>
-            <width>71</width>
-            <height>16</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string>Стоимость</string>
-          </property>
-         </widget>
-         <widget class="QLineEdit" name="lineEdit_2">
-          <property name="geometry">
-           <rect>
-            <x>10</x>
-            <y>10</y>
-            <width>141</width>
-            <height>20</height>
-           </rect>
-          </property>
-         </widget>
-        </widget>
+        <layout class="QVBoxLayout" name="answersVLayout"/>
        </widget>
-       <widget class="QPushButton" name="pushButton_3">
+       <widget class="QLabel" name="imageLabel">
         <property name="geometry">
          <rect>
-          <x>20</x>
-          <y>340</y>
-          <width>101</width>
-          <height>23</height>
+          <x>200</x>
+          <y>10</y>
+          <width>281</width>
+          <height>21</height>
          </rect>
         </property>
         <property name="text">
-         <string>Добавить ответ</string>
+         <string>XXX</string>
         </property>
        </widget>
-       <zorder>comboBox</zorder>
-       <zorder>label</zorder>
-       <zorder>textEdit</zorder>
-       <zorder>label_2</zorder>
-       <zorder>textEdit_2</zorder>
-       <zorder>label_3</zorder>
-       <zorder>answersWidget</zorder>
-       <zorder>pushButton_3</zorder>
-       <zorder>lineEdit_2</zorder>
       </widget>
      </widget>
-     <widget class="QPushButton" name="pushButton">
+     <widget class="QPushButton" name="addQuestionButton">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -322,7 +235,7 @@
        <string>Добавить вопрос</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_2">
+     <widget class="QPushButton" name="deleteQuestionButton">
       <property name="geometry">
        <rect>
         <x>160</x>
@@ -335,7 +248,7 @@
        <string>Удалить вопрос</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_4">
+     <widget class="QPushButton" name="compileTestButton">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -346,6 +259,32 @@
       </property>
       <property name="text">
        <string>Собрать тест</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_3">
+      <property name="geometry">
+       <rect>
+        <x>270</x>
+        <y>370</y>
+        <width>101</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Добавить ответ</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="insertImage">
+      <property name="geometry">
+       <rect>
+        <x>110</x>
+        <y>0</y>
+        <width>121</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Вставить картинку</string>
       </property>
      </widget>
     </widget>
@@ -362,19 +301,6 @@
         <height>301</height>
        </rect>
       </property>
-      <widget class="QRadioButton" name="radioButton_4">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>170</y>
-         <width>82</width>
-         <height>17</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Случайный</string>
-       </property>
-      </widget>
       <widget class="QLabel" name="label_7">
        <property name="geometry">
         <rect>
@@ -388,7 +314,7 @@
         <string>Количество задаваемых вопросов</string>
        </property>
       </widget>
-      <widget class="QLabel" name="label_8">
+      <widget class="QLabel" name="numberOfQuestionsLabel">
        <property name="geometry">
         <rect>
          <x>90</x>
@@ -398,7 +324,7 @@
         </rect>
        </property>
        <property name="text">
-        <string>10</string>
+        <string>1</string>
        </property>
       </widget>
       <widget class="QLabel" name="label_6">
@@ -414,25 +340,12 @@
         <string>Ограничение по времени</string>
        </property>
       </widget>
-      <widget class="QLabel" name="label_10">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>130</y>
-         <width>101</width>
-         <height>16</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Порядок вопросов</string>
-       </property>
-      </widget>
-      <widget class="QTimeEdit" name="timeEdit">
+      <widget class="QTimeEdit" name="limitedTimeTimeEdit">
        <property name="geometry">
         <rect>
          <x>10</x>
          <y>30</y>
-         <width>118</width>
+         <width>71</width>
          <height>22</height>
         </rect>
        </property>
@@ -440,7 +353,7 @@
         <string>H:mm:ss</string>
        </property>
       </widget>
-      <widget class="QSpinBox" name="spinBox">
+      <widget class="QSpinBox" name="numberOfQuestionsSpinBox">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -449,27 +362,8 @@
          <height>21</height>
         </rect>
        </property>
-      </widget>
-      <widget class="QRadioButton" name="radioButton">
-       <property name="enabled">
-        <bool>true</bool>
-       </property>
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>150</y>
-         <width>82</width>
-         <height>17</height>
-        </rect>
-       </property>
-       <property name="layoutDirection">
-        <enum>Qt::LeftToRight</enum>
-       </property>
-       <property name="text">
-        <string>По порядку</string>
-       </property>
-       <property name="checked">
-        <bool>true</bool>
+       <property name="minimum">
+        <number>1</number>
        </property>
       </widget>
       <widget class="QLabel" name="label_9">
@@ -485,56 +379,11 @@
         <string>/</string>
        </property>
       </widget>
-      <widget class="QRadioButton" name="radioButton_5">
-       <property name="geometry">
-        <rect>
-         <x>170</x>
-         <y>170</y>
-         <width>82</width>
-         <height>17</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Случаный</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_11">
-       <property name="geometry">
-        <rect>
-         <x>170</x>
-         <y>130</y>
-         <width>101</width>
-         <height>16</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Порядок вопросов</string>
-       </property>
-      </widget>
-      <widget class="QRadioButton" name="radioButton_6">
-       <property name="enabled">
-        <bool>true</bool>
-       </property>
-       <property name="geometry">
-        <rect>
-         <x>170</x>
-         <y>150</y>
-         <width>82</width>
-         <height>17</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>По порядку</string>
-       </property>
-       <property name="checked">
-        <bool>false</bool>
-       </property>
-      </widget>
       <widget class="QLabel" name="label_12">
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>210</y>
+         <y>250</y>
          <width>111</width>
          <height>16</height>
         </rect>
@@ -547,7 +396,7 @@
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>230</y>
+         <y>270</y>
          <width>201</width>
          <height>22</height>
         </rect>
@@ -563,6 +412,46 @@
         </property>
        </item>
       </widget>
+      <widget class="QGroupBox" name="groupBox">
+       <property name="geometry">
+        <rect>
+         <x>40</x>
+         <y>130</y>
+         <width>102</width>
+         <height>73</height>
+        </rect>
+       </property>
+       <property name="title">
+        <string>GroupBox</string>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout">
+        <item>
+         <widget class="QRadioButton" name="radioButton_2">
+          <property name="text">
+           <string>RadioButton</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QRadioButton" name="radioButton_3">
+          <property name="text">
+           <string>RadioButton</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="widget_5" native="true">
+      <property name="geometry">
+       <rect>
+        <x>380</x>
+        <y>120</y>
+        <width>100</width>
+        <height>58</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_2"/>
      </widget>
     </widget>
    </widget>
