@@ -1,16 +1,5 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include <QApplication>
-#include <QListWidget>
-#include <QDebug>
-#include <QGroupBox>
-#include <QCheckBox>
-#include <QLineEdit>
-#include <QLayout>
-#include <QFile>
-#include <QObject>
-#include <QtXml>
-#include <QFileDialog>
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -19,7 +8,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    countQuestions=1;
+    countQuestions=2;
     countAnswers=0;
     //qDebug()<<"";
     QListWidgetItem *item = new QListWidgetItem("Вопрос 1");
@@ -31,7 +20,7 @@ MainWindow::MainWindow(QWidget *parent) :
     curText=item->text();
     loadData();
     generateAnswers(ui->questionTypeComboBox->currentIndex());
-    connect(signalMapper, SIGNAL(mapped(int)), this, SIGNAL(objectNameChanged(QString)));
+    //connect(signalMapper, SIGNAL(mapped(int)), this, SIGNAL(objectNameChanged(QString)));
 //    ui->radioButton->setCheckable(true);//orderedQuestion
 //    ui->radioButton->setChecked(true);
 //    ui->radioButton_5->setCheckable(true);//orderedAnswer
@@ -57,7 +46,7 @@ void MainWindow::on_deleteQuestionButton_clicked()
         saveData(curItem->text(), questions.value(nextItem->text()));
     }
     countQuestions--;
-    QListWidgetItem* itm=ui->questionsListWidget->takeItem(countQuestions-1);
+    ui->questionsListWidget->takeItem(countQuestions-1);
     curQues=questions.value(ui->questionsListWidget->item(currentRow)->text());
     curText=ui->questionsListWidget->item(currentRow)->text();
     //delete itm1;
@@ -67,6 +56,10 @@ void MainWindow::on_questionTypeComboBox_activated(int index)
 {
     qDebug()<<"setting question type"<<index;
     curQues->setType(index);
+    clearLayout(*ui->answersVLayout);
+    ui->answersVLayout->update();
+    qDebug()<<"new count: "<<ui->answersVLayout->count();
+    generateAnswers(index);
     generateAnswers(index);
 }
 void MainWindow::on_questionTextTextEdit_textChanged()
@@ -121,7 +114,9 @@ void MainWindow::savenload(QString text)
 
 
 
-void MainWindow::on_questionsListWidget_clicked(const QModelIndex &index)
+void MainWindow::on_questionsListWidget_clicked(
+        //const QModelIndex &index
+        )
 {
     QListWidgetItem *item=ui->questionsListWidget->currentItem();
     qDebug()<<"activated item: text "<<item->text();
@@ -160,11 +155,7 @@ void MainWindow::on_limitedTimeTimeEdit_timeChanged(const QTime &time)
 //}
 
 
-QDomElement settings( QDomDocument& domDoc,
-                     const QString& strName,
-                     const QString& strPhone,
-                     const QString& strEmail
-                     );
+
 //QDomElement makeElement( QDomDocument& domDoc,
 //                         const QString& strName,
 //                         const QString& strAttr = QString(),
@@ -195,7 +186,9 @@ void MainWindow::compileTest()
     QDomElement domElement = doc.createElement("testItself");
     doc.appendChild(domElement);
     QDomElement sets =
-            settings(doc, "", "", "");
+            settings(doc
+                     //, "", "", ""
+                     );
     domElement.appendChild(sets);
     QFile file("exampleTest.xml");
     if(file.open(QIODevice::WriteOnly)) {
@@ -222,28 +215,20 @@ void MainWindow::clearLayout(QLayout& layout){
 
 void MainWindow::generateAnswers(int index)
 {
-    clearLayout(*ui->answersVLayout);
-    ui->answersVLayout->update();
-    qDebug()<<"new count: "<<ui->answersVLayout->count();
     switch(index){
     case 0://Polar
         generateRadio();
         break;
     case 1://One of many
         generateRadio();
-        generateRadio();
-        generateRadio();
         break;
     case 2://many of many
-        generateCheckbox();
         generateCheckbox();
         break;
     case 3://matching
         generateMatching();
-        generateMatching();
                 break;
     case 4://sequence
-        generateSequence();
         generateSequence();
         break;
     case 5://short
@@ -342,10 +327,10 @@ void MainWindow::generateShort()
 
 
 
-QDomElement settings( QDomDocument& domDoc,
-                     const QString& strName,
-                     const QString& strPhone,
-                     const QString& strEmail
+QDomElement MainWindow::settings( QDomDocument& domDoc
+                     //const QString& strName,
+                     //const QString& strPhone,
+                     //const QString& strEmail
                      )
 {
     QDomElement domElement = makeElement(domDoc, "globalSettings");
@@ -403,11 +388,8 @@ void MainWindow::on_answerText_textChanged(const QString &s)
 void MainWindow::on_insertImage_clicked()
 {
     QString file = QFileDialog::getOpenFileName(this, tr("Select an image"),
-                                     "./Users/Images/", tr("Bitmap Files (*.bmp)\n"
-                                       "JPEG (*.jpg *jpeg)\n"
-                                       "GIF (*.gif)\n"
-                                       "PNG (*.png)"));
-       QUrl Uri ( QString ( "file://%1" ).arg ( file ) );
+                                     "../Images/", tr("All images (*.jpg *jpeg *.bmp *.gif *.png)"));
+//       QUrl Uri ( QString ( "file://%1" ).arg ( file ) );
 //       QImage image = QImageReader ( file ).read();
 
 //       QTextDocument * textDocument = ui->questionTextTextEdit->document();
@@ -421,14 +403,24 @@ void MainWindow::on_insertImage_clicked()
 
        QPixmap pixmap(file);
        QLabel *label=ui->imageLabel;
-       pixmap=pixmap.scaled(100, 100, Qt::KeepAspectRatio);
+       QSize size(100, 50);
+       pixmap=pixmap.scaled(size, Qt::KeepAspectRatio);
        label->resize(pixmap.width(), pixmap.height());
        label->setPixmap(pixmap);
-       //label->setMask(pixmap.mask());
 
        label->show();
 }
 void MainWindow::on_addQuestionButton_clicked()
 {
-   generateAnswers(ui->questionTypeComboBox->currentIndex());
+    QListWidgetItem *item = new QListWidgetItem("Вопрос "+ QString::number(countQuestions));
+    ui->questionsListWidget->addItem(item);
+    ui->questionsListWidget->setCurrentItem(item);
+    addQuestion(item->text());
+    savenload(item->text());
+    countQuestions++;
+}
+
+void MainWindow::on_addAnswerButton_released()
+{
+    generateAnswers(ui->questionTypeComboBox->currentIndex());
 }
