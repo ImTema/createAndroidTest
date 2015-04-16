@@ -47,13 +47,16 @@ private slots:
     void on_questionsListWidget_clicked(const QModelIndex &index);
     void on_limitedTimeTimeEdit_timeChanged(const QTime &time);
     void on_compileTestButton_released();
+    void on_insertImage_clicked();
 
     void on_answerText_textChanged(const QString &s);
 
 
     void on_trueOrderedQuestions_toggled(bool checked);
 
-    void on_insertImage_clicked();
+
+
+
 
 private:
     Ui::MainWindow *ui;

@@ -339,10 +339,7 @@ void MainWindow::generateShort()
     countAnswers++;
 }
 
-void MainWindow::on_addQuestionButton_clicked()
-{
 
-}
 
 
 QDomElement settings( QDomDocument& domDoc,
@@ -430,4 +427,8 @@ void MainWindow::on_insertImage_clicked()
        //label->setMask(pixmap.mask());
 
        label->show();
+}
+void MainWindow::on_addQuestionButton_clicked()
+{
+   generateAnswers(ui->questionTypeComboBox->currentIndex());
 }
