@@ -16,10 +16,13 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     question.cpp \
-    settings.cpp
+    settings.cpp \
+    dialog.cpp
 
 HEADERS  += mainwindow.h \
     question.h \
-    settings.h
+    settings.h \
+    dialog.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    dialog.ui

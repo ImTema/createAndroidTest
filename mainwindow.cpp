@@ -19,6 +19,7 @@ MainWindow::MainWindow(QWidget *parent) :
     curQues=questions.value(item->text());
     curText=item->text();
     loadData();
+    ui->numberOfQuestionsSpinBox->setMaximum(countQuestions);
     generateAnswers(ui->questionTypeComboBox->currentIndex());
     //connect(signalMapper, SIGNAL(mapped(int)), this, SIGNAL(objectNameChanged(QString)));
 //    ui->radioButton->setCheckable(true);//orderedQuestion
@@ -129,39 +130,7 @@ void MainWindow::on_limitedTimeTimeEdit_timeChanged(const QTime &time)
     sets->setLimitedTime(time);
 }
 
-//void MainWindow::on_trueOrderedAnswers_toggled(bool checked)
-//{
 
-//    sets->setOrderedAnswers(checked);
-//    qDebug()<<sets->getOrderedAnswers();
-//}
-
-//void MainWindow::on_trueOrderedQuestions_toggled(bool checked)
-//{
-//    sets->setOrderedQuestions(checked);
-//    qDebug()<<sets->getOrderedQuestions();
-//}
-
-//void MainWindow::on_trueOrderedQuestions_clicked(bool checked)
-//{
-//    sets->setOrderedAnswers(checked);
-//    qDebug()<<sets->getOrderedAnswers();
-//}
-
-
-//void MainWindow::on_falseOrderedQuestions_clicked()
-//{
-
-//}
-
-
-
-//QDomElement makeElement( QDomDocument& domDoc,
-//                         const QString& strName,
-//                         const QString& strAttr = QString(),
-//                         const QString& strText = QString(),
-
-//        );
 QDomElement makeElement( QDomDocument& domDoc,
                          const QString& strName,
                          const QString& strText = QString(),
@@ -185,11 +154,11 @@ void MainWindow::compileTest()
     QDomDocument doc("testItself");
     QDomElement domElement = doc.createElement("testItself");
     doc.appendChild(domElement);
-    QDomElement sets =
-            settings(doc
+    QDomElement settings2write =
+            getSettings(doc
                      //, "", "", ""
                      );
-    domElement.appendChild(sets);
+    domElement.appendChild(settings2write);
     QFile file("exampleTest.xml");
     if(file.open(QIODevice::WriteOnly)) {
         QTextStream(&file) << doc.toString();
@@ -327,7 +296,7 @@ void MainWindow::generateShort()
 
 
 
-QDomElement MainWindow::settings( QDomDocument& domDoc
+QDomElement MainWindow::getSettings( QDomDocument& domDoc
                      //const QString& strName,
                      //const QString& strPhone,
                      //const QString& strEmail
@@ -363,21 +332,6 @@ QDomElement makeElement( QDomDocument& domDoc,
     return domElement;
 }
 
-//void MainWindow::on_radioButton_4_toggled(bool checked)
-//{
-//    qDebug()<<checked;
-//}
-
-//void MainWindow::on_radioButton_5_toggled(bool checked)
-//{
-//    qDebug()<<checked;
-//}
-
-void MainWindow::on_trueOrderedQuestions_toggled(bool checked)
-{
-    qDebug()<<checked;
-    sets->setOrderedQuestions(checked);
-}
 
 
 void MainWindow::on_answerText_textChanged(const QString &s)
@@ -407,9 +361,10 @@ void MainWindow::on_insertImage_clicked()
        pixmap=pixmap.scaled(size, Qt::KeepAspectRatio);
        label->resize(pixmap.width(), pixmap.height());
        label->setPixmap(pixmap);
-
        label->show();
 }
+
+
 void MainWindow::on_addQuestionButton_clicked()
 {
     QListWidgetItem *item = new QListWidgetItem("Вопрос "+ QString::number(countQuestions));
@@ -423,4 +378,27 @@ void MainWindow::on_addQuestionButton_clicked()
 void MainWindow::on_addAnswerButton_released()
 {
     generateAnswers(ui->questionTypeComboBox->currentIndex());
+}
+
+
+void MainWindow::on_falseOrderQuestion_toggled(bool checked)
+{
+    qDebug()<<checked;
+    sets->setOrderedQuestions(checked);
+}
+
+void MainWindow::on_falseOrderAnswers_toggled(bool checked)
+{
+    qDebug()<<checked;
+    /*Это работает*/
+//    Settings *s = new Settings();
+//    s->orderedQuestions=checked;
+    /*Это нет*/
+    sets->setOrderedAnswers(checked);
+}
+
+void MainWindow::on_numberOfQuestionsSpinBox_valueChanged(int arg1)
+{
+    qDebug()<<"number of questions"<<arg1;
+    sets->setNumberOfQuestions(arg1);
 }

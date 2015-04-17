@@ -20,6 +20,7 @@
 #include <QObject>
 #include <QtXml>
 #include <QFileDialog>
+#include "settings.h"
 
 namespace Ui {
 class MainWindow;
@@ -32,7 +33,7 @@ class MainWindow : public QMainWindow
     QMap<QString,Question*> questions;
     Question* curQues;
     QString curText;
-    Settings* sets;
+    Settings* sets=new Settings();
     int countAnswers;
     //QSignalMapper *signalMapper = new QSignalMapper(this);
 public:
@@ -50,7 +51,7 @@ public:
     void generateSequence();
     void generateMatching();
     void generateShort();
-    QDomElement settings( QDomDocument&
+    QDomElement getSettings( QDomDocument&
                            //const QString& strName,
                            //const QString& strPhone,
                            //const QString& strEmail
@@ -69,14 +70,13 @@ private slots:
 
     void on_answerText_textChanged(const QString &s);
 
-
-    void on_trueOrderedQuestions_toggled(bool checked);
-
-
-
-
-
     void on_addAnswerButton_released();
+
+    void on_falseOrderQuestion_toggled(bool checked);
+
+    void on_falseOrderAnswers_toggled(bool checked);
+
+    void on_numberOfQuestionsSpinBox_valueChanged(int arg1);
 
 private:
     Ui::MainWindow *ui;

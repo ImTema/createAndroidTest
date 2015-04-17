@@ -8,14 +8,15 @@ class Settings
 public:
     explicit Settings();
     ~Settings();
-    bool getOrderedQuestions() const;
     void setOrderedQuestions(bool value);
-    bool getOrderedAnswers() const;
     void setOrderedAnswers(bool value);
-    QTime getLimitedTime() const;
-    void setLimitedTime(const QTime &value);
-    int getNumberOfQuestions() const;
+    void setOrderedAnswers(int value);
     void setNumberOfQuestions(int value);
+    void setLimitedTime(const QTime &value);
+    bool getOrderedQuestions() const;
+    bool getOrderedAnswers() const;
+    QTime getLimitedTime() const;
+    int getNumberOfQuestions() const;
 
 private:
     bool orderedQuestions;

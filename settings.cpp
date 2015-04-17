@@ -31,7 +31,12 @@ bool Settings::getOrderedAnswers() const
 
 void Settings::setOrderedAnswers(bool value)
 {
-    orderedAnswers = value;
+    orderedAnswers = false;
+}
+
+void Settings::setOrderedAnswers(int value)
+{
+    orderedAnswers=value;
 }
 
 QTime Settings::getLimitedTime() const

@@ -27,7 +27,7 @@
      <enum>QTabWidget::West</enum>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -362,6 +362,9 @@
          <height>21</height>
         </rect>
        </property>
+       <property name="correctionMode">
+        <enum>QAbstractSpinBox::CorrectToNearestValue</enum>
+       </property>
        <property name="minimum">
         <number>1</number>
        </property>
@@ -412,30 +415,62 @@
         </property>
        </item>
       </widget>
-      <widget class="QGroupBox" name="groupBox">
+      <widget class="QGroupBox" name="orderQuestions">
        <property name="geometry">
         <rect>
-         <x>40</x>
-         <y>130</y>
+         <x>10</x>
+         <y>140</y>
+         <width>121</width>
+         <height>73</height>
+        </rect>
+       </property>
+       <property name="title">
+        <string>Порядок вопросов</string>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout">
+        <item>
+         <widget class="QRadioButton" name="falseOrderQuestion">
+          <property name="text">
+           <string>По очереди</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QRadioButton" name="trueOrderQuestion">
+          <property name="text">
+           <string>Случайно</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QGroupBox" name="orderAnswers">
+       <property name="geometry">
+        <rect>
+         <x>240</x>
+         <y>140</y>
          <width>102</width>
          <height>73</height>
         </rect>
        </property>
        <property name="title">
-        <string>GroupBox</string>
+        <string>Порядок ответов</string>
        </property>
-       <layout class="QVBoxLayout" name="verticalLayout">
+       <layout class="QVBoxLayout" name="verticalLayout_3">
         <item>
-         <widget class="QRadioButton" name="radioButton_2">
+         <widget class="QRadioButton" name="falseOrderAnswers">
           <property name="text">
-           <string>RadioButton</string>
+           <string>По порядку</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QRadioButton" name="radioButton_3">
+         <widget class="QRadioButton" name="trueOrderAnswers">
           <property name="text">
-           <string>RadioButton</string>
+           <string>Случайно</string>
           </property>
          </widget>
         </item>
