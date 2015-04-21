@@ -19,9 +19,8 @@ MainWindow::MainWindow(QWidget *parent) :
     addQuestion(item->text());
     curQues=questions.value(item->text());
     curText=item->text();
-    loadData();
     ui->numberOfQuestionsSpinBox->setMaximum(countQuestions-1);
-    generateAnswers(ui->questionTypeComboBox->currentIndex());
+    loadData();
     //ui->scrollArea_2->setLayout(answersVLayout);
     //connect(signalMapper, SIGNAL(mapped(int)), this, SIGNAL(objectNameChanged(QString)));
     //    ui->radioButton->setCheckable(true);//orderedQuestion
@@ -66,7 +65,7 @@ void MainWindow::on_questionTypeComboBox_activated(int index)
 void MainWindow::on_questionTextTextEdit_textChanged()
 {
     QString textEdit=ui->questionTextTextEdit->toPlainText();
-    qDebug()<<"changing question"<<curText<<"text to "<<textEdit;
+    qDebug()<<"changing question text"<<curText<<"to"<<textEdit;
     curQues->setText(textEdit);
 }
 
@@ -80,32 +79,12 @@ void MainWindow::addQuestion(QString text){
         Question *q = new Question(text);
         questions.insert(text, q);
     }
-    //    qDebug()<<"THIS IS LIST: "<<questions.count();
-    //    foreach(QString s, questions.keys()){
-    //        qDebug()<<s<<":"<<questions.value(s)->getQuestion();
-    //    }
-    //    qDebug()<<"";
     ui->numberOfQuestionsLabel->setText(QString::number(questions.count()));
-    ui->numberOfQuestionsSpinBox->setMaximum(countQuestions-1);
-}
-
-
-void MainWindow::loadData()
-{
-    ui->questionTypeComboBox->setCurrentIndex(curQues->getType());
-    ui->questionTextTextEdit->setText(curQues->getQuestion());
-    ui->explanationTextTextEdit->setText(curQues->getExplanation());
-    setImageLabel(curQues->getFileName());
-
-}
-
-void MainWindow::saveData(QString key, Question *value)
-{
-    questions.insert(key, value);
 }
 
 void MainWindow::savenload(QString text)
 {
+    curQues->setAnswers(answers);
     saveData(curText, curQues);
     curQues=questions.value(text);
     curText=text;
@@ -113,10 +92,37 @@ void MainWindow::savenload(QString text)
 }
 
 
+void MainWindow::saveData(QString key, Question *value)
+{
 
-void MainWindow::on_questionsListWidget_clicked(
-        //const QModelIndex &index
-        )
+    qDebug()<<"saving data...";
+    qDebug()<<"answers amount: "<<value->getAnswers().count();
+    questions.insert(key, value);
+}
+
+
+void MainWindow::loadData()
+{
+    clearLayout();
+    qDebug()<<"loading data...";
+    answers=curQues->getAnswers();
+    qDebug()<<"answers amount: "<<answers.count();
+    if(!answers.isEmpty()){
+        foreach(Answer *w, answers){
+            answersVLayout->addWidget(w);//вылетает на смене вопроса на обратный после создания нового
+        }
+    }
+    else{
+        doingsAfterReselectingOrCreating();
+    }
+    ui->questionTypeComboBox->setCurrentIndex(curQues->getType());
+    ui->questionTextTextEdit->setText(curQues->getQuestion());
+    ui->explanationTextTextEdit->setText(curQues->getExplanation());
+    setImageLabel(curQues->getFileName());
+
+}
+
+void MainWindow::on_questionsListWidget_clicked()
 {
     QListWidgetItem *item=ui->questionsListWidget->currentItem();
     qDebug()<<"activated item: text "<<item->text();
@@ -129,69 +135,22 @@ void MainWindow::on_limitedTimeTimeEdit_timeChanged(const QTime &time)
     sets->setLimitedTime(time);
 }
 
-
-QDomElement makeElement( QDomDocument& domDoc,
-                         const QString& strName,
-                         const QString& strText = QString(),
-                         const QString& strAttr = QString(),
-                         const QString& strAttrValue = QString()
-        );
-
-
-
 void MainWindow::on_compileTestButton_released()
 {
     compileTest();
     qDebug()<<"Test compiled";
 }
 
-
-
-
-void MainWindow::compileTest()
-{
-    QDomDocument doc("testItself");
-    QDomElement domElement = doc.createElement("testItself");
-    doc.appendChild(domElement);
-    QDomElement settings2write =
-            getSettings(doc
-                        //, "", "", ""
-                        );
-    domElement.appendChild(settings2write);
-    QFile file("exampleTest.xml");
-    if(file.open(QIODevice::WriteOnly)) {
-        QTextStream(&file) << doc.toString();
-        file.close();
-    }
-}
-
-
-
 void MainWindow::clearLayout(){
     countAnswers=0;
     qDebug()<<"clearing layout. count: "<<answersVLayout->count();
-    QMap<int, Answer *> temp=curQues->getAnswers();
-    foreach(QWidget* w, answers){
-        // answersVLayout->removeWidget(w);//удаляет(не могу сделать активными), но оставляет после себя остатки
+    foreach(Answer* w, answers){
+        qDebug()<<"deleting #"<<w->getId();
         delete w; //ука работает
     }
-
-    //    QLayoutItem *child; //тоже самое
-    //    while ((child = answersVLayout->takeAt(0)) != 0)  {
-    //        delete child;
-    //    }
-
-
-
-    //    delete ui->answersScrollAreaWidgetContents; //удаляет и ничего не возвращает
-    //    ui->answersScrollAreaWidgetContents=new QWidget(ui->answersScrollArea);
-    //    answersVLayout=new QVBoxLayout(ui->answersScrollAreaWidgetContents);
-    //    ui->answersScrollAreaWidgetContents->update();
-
+    answers.clear();
     qDebug()<<"clearing layout. count: "<<answersVLayout->count();
 }
-
-
 
 void MainWindow::generateAnswers(int index)
 {
@@ -215,85 +174,46 @@ void MainWindow::generateAnswers(int index)
         generateShort();
         break;
     }
+    countAnswers++;
+    qDebug()<<"'answers amount after generating asnwers: "<<answers.count();
 }
-
-
 
 void MainWindow::generateCheckbox()
 {
     Answer *ch = new Checkbox(ui->scrollAreaWidgetContents, answersVLayout, countAnswers);
     answers.insert(ch->getId(), ch);
-    countAnswers++;
 }
+
 void MainWindow::generateRadio()
 {
     Answer *ch = new Radio(ui->scrollAreaWidgetContents, answersVLayout, countAnswers);
     answers.insert(ch->getId(), ch);
-    countAnswers++;
 }
 
 void MainWindow::generateSequence()
 {
-    QLineEdit *answerText=new QLineEdit();
-    //QPushButton *deleteAnswerButton=new QPushButton("Удалить");
-    QHBoxLayout *answer = new QHBoxLayout();
-    QLabel *sequenceNumber= new QLabel(QString::number(countAnswers+1));
-    answer->addWidget(sequenceNumber);
-    answer->addWidget(answerText);
-    //answer->addWidget(deleteAnswerButton);
-    answersVLayout->addLayout(answer);
-    countAnswers++;
+    Answer *ch = new Sequence(ui->scrollAreaWidgetContents, answersVLayout, countAnswers);
+    answers.insert(ch->getId(), ch);
 }
 
 void MainWindow::generateMatching()
 {
-    QLineEdit *answerText=new QLineEdit();
-    QLineEdit *answerText2=new QLineEdit();
-    QRadioButton *correctCheckbox=new QRadioButton("Правильный");
-    QSpinBox *answerPrice=new QSpinBox();
-    QLabel *priceLabel = new QLabel("Стоимость");
-    //QPushButton *deleteAnswerButton=new QPushButton("Удалить");
-    QHBoxLayout *answer = new QHBoxLayout();
-    answerPrice->setMaximum(10);
-    answer->addWidget(answerText);
-    answer->addWidget(new QLabel(" - "));
-    answer->addWidget(answerText2);
-    answer->addWidget(correctCheckbox);
-    answer->addWidget(answerPrice);
-    answer->addWidget(priceLabel);
-    //answer->addWidget(deleteAnswerButton);
-    answersVLayout->addLayout(answer);
-    countAnswers++;
+    Answer *ch = new Matching(ui->scrollAreaWidgetContents, answersVLayout, countAnswers);
+    answers.insert(ch->getId(), ch);
 }
 
 void MainWindow::generateShort()
 {
-    QLineEdit *answerText=new QLineEdit();
-    //QPushButton *deleteAnswerButton=new QPushButton("Удалить");
-    QHBoxLayout *answer = new QHBoxLayout();
-    answer->addWidget(answerText);
-    //answer->addWidget(deleteAnswerButton);
-    answersVLayout->addLayout(answer);
-    countAnswers++;
+    Answer *ch = new Short(ui->scrollAreaWidgetContents, answersVLayout, countAnswers);
+    answers.insert(ch->getId(), ch);
 }
 
-
-
-
-QDomElement MainWindow::getSettings( QDomDocument& domDoc
-                                     //const QString& strName,
-                                     //const QString& strPhone,
-                                     //const QString& strEmail
-                                     )
+void MainWindow::on_insertImage_clicked()
 {
-    QDomElement domElement = makeElement(domDoc, "globalSettings");
-    domElement.appendChild(makeElement(domDoc, "name", "testName"));
-    domElement.appendChild(makeElement(domDoc, "questionsToAsk", "3"));
-    domElement.appendChild(makeElement(domDoc, "randomizeQuestions", "yes"));
-    domElement.appendChild(makeElement(domDoc, "randomizeAnswers", "yes"));
-    domElement.appendChild(makeElement(domDoc, "timeLimit", QTime(0,0,30,0).toString()));
-    domElement.appendChild(makeElement(domDoc, "gradeSystem"));
-    return domElement;
+    QString file = QFileDialog::getOpenFileName(this, tr("Select an image"),
+                                                "../Images/", tr("All images (*.jpg *jpeg *.bmp *.gif *.png)"));
+    curQues->setFileName(file);
+    setImageLabel(file);
 }
 
 void MainWindow::setImageLabel(QString file)
@@ -311,10 +231,87 @@ void MainWindow::setImageLabel(QString file)
         label->resize(pixmap.width(), pixmap.height());
         label->setPixmap(pixmap);
     }
-
 }
 
-QDomElement makeElement( QDomDocument& domDoc,
+
+void MainWindow::on_addQuestionButton_clicked()
+{
+    QListWidgetItem *item = new QListWidgetItem("Вопрос "+ QString::number(countQuestions));
+    ui->questionsListWidget->addItem(item);
+    ui->questionsListWidget->setCurrentItem(item);
+    addQuestion(item->text());
+    savenload(item->text());
+    countQuestions++;
+    ui->numberOfQuestionsSpinBox->setMaximum(countQuestions-1);
+}
+
+void MainWindow::on_addAnswerButton_released()
+{
+    generateAnswers(ui->questionTypeComboBox->currentIndex());
+}
+
+
+void MainWindow::on_falseOrderQuestion_toggled(bool checked)
+{
+    qDebug()<<checked;
+    sets->setOrderedQuestions(checked);
+}
+
+void MainWindow::on_falseOrderAnswers_toggled(bool checked)
+{
+    qDebug()<<checked;
+    sets->setOrderedAnswers(checked);
+}
+
+void MainWindow::on_numberOfQuestionsSpinBox_valueChanged(int arg1)
+{
+    qDebug()<<"number of questions"<<arg1;
+    sets->setNumberOfQuestions(arg1);
+}
+
+
+
+void MainWindow::compileTest()
+{
+    QDomDocument doc("testItself");
+    QDomElement domElement = doc.createElement("testItself");
+    doc.appendChild(domElement);
+    QDomElement settings2write =
+            getSettings(doc
+                        //, "", "", ""
+                        );
+    domElement.appendChild(settings2write);
+    QFile file("exampleTest.xml");
+    if(file.open(QIODevice::WriteOnly)) {
+        QTextStream(&file) << doc.toString();
+        file.close();
+    }
+}
+
+void MainWindow::doingsAfterReselectingOrCreating()
+{
+    generateAnswers(ui->questionTypeComboBox->currentIndex());
+    generateAnswers(ui->questionTypeComboBox->currentIndex());
+}
+
+QDomElement MainWindow::getSettings( QDomDocument& domDoc
+                                     //const QString& strName,
+                                     //const QString& strPhone,
+                                     //const QString& strEmail
+                                     )
+{
+    QDomElement domElement = makeElement(domDoc, "globalSettings");
+    domElement.appendChild(makeElement(domDoc, "name", "testName"));
+    domElement.appendChild(makeElement(domDoc, "questionsToAsk", "3"));
+    domElement.appendChild(makeElement(domDoc, "randomizeQuestions", "yes"));
+    domElement.appendChild(makeElement(domDoc, "randomizeAnswers", "yes"));
+    domElement.appendChild(makeElement(domDoc, "timeLimit", QTime(0,0,30,0).toString()));
+    domElement.appendChild(makeElement(domDoc, "gradeSystem"));
+    return domElement;
+}
+
+
+QDomElement MainWindow::makeElement( QDomDocument& domDoc,
                          const QString& strName,
                          const QString& strText,
                          const QString& strAttr,
@@ -333,62 +330,3 @@ QDomElement makeElement( QDomDocument& domDoc,
     }
     return domElement;
 }
-
-void MainWindow::on_insertImage_clicked()
-{
-    QString file = QFileDialog::getOpenFileName(this, tr("Select an image"),
-                                                "../Images/", tr("All images (*.jpg *jpeg *.bmp *.gif *.png)"));
-    //       QUrl Uri ( QString ( "file://%1" ).arg ( file ) );
-    //       QImage image = QImageReader ( file ).read();
-
-    //       QTextDocument * textDocument = ui->questionTextTextEdit->document();
-    //       textDocument->addResource( QTextDocument::ImageResource, Uri, QVariant ( image ) );
-    //       QTextCursor cursor = ui->questionTextTextEdit->textCursor();
-    //       QTextImageFormat imageFormat;
-    //       imageFormat.setWidth( image.width() );
-    //       imageFormat.setHeight( image.height() );
-    //       imageFormat.setName( Uri.toString() );
-    //       cursor.insertImage(imageFormat);
-    curQues->setFileName(file);
-    setImageLabel(file);
-}
-
-
-void MainWindow::on_addQuestionButton_clicked()
-{
-    QListWidgetItem *item = new QListWidgetItem("Вопрос "+ QString::number(countQuestions));
-    ui->questionsListWidget->addItem(item);
-    ui->questionsListWidget->setCurrentItem(item);
-    addQuestion(item->text());
-    savenload(item->text());
-    countQuestions++;
-}
-
-void MainWindow::on_addAnswerButton_released()
-{
-    generateAnswers(ui->questionTypeComboBox->currentIndex());
-}
-
-
-void MainWindow::on_falseOrderQuestion_toggled(bool checked)
-{
-    qDebug()<<checked;
-    sets->setOrderedQuestions(checked);
-}
-
-void MainWindow::on_falseOrderAnswers_toggled(bool checked)
-{
-    qDebug()<<checked;
-    /*Это работает*/
-    //    Settings *s = new Settings();
-    //    s->orderedQuestions=checked;
-    /*Это нет*/
-    sets->setOrderedAnswers(checked);
-}
-
-void MainWindow::on_numberOfQuestionsSpinBox_valueChanged(int arg1)
-{
-    qDebug()<<"number of questions"<<arg1;
-    sets->setNumberOfQuestions(arg1);
-}
-

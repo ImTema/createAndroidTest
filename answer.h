@@ -2,6 +2,13 @@
 #define ANSWER_H
 
 #include <QWidget>
+#include <QHBoxLayout>
+#include <QLineEdit>
+#include <QCheckBox>
+#include <QSpinBox>
+#include <QLabel>
+#include <QRadioButton>
+#include <QDebug>
 
 class Answer : public QWidget
 {

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>906</width>
-    <height>465</height>
+    <height>474</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -23,7 +23,7 @@
       <property name="minimumSize">
        <size>
         <width>0</width>
-        <height>405</height>
+        <height>415</height>
        </size>
       </property>
       <property name="tabPosition">
@@ -79,7 +79,7 @@
              <x>0</x>
              <y>0</y>
              <width>580</width>
-             <height>321</height>
+             <height>331</height>
             </rect>
            </property>
            <layout class="QGridLayout" name="gridLayout_2">
@@ -139,12 +139,6 @@
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
-              <property name="minimumSize">
-               <size>
-                <width>471</width>
-                <height>51</height>
-               </size>
-              </property>
               <property name="maximumSize">
                <size>
                 <width>16777215</width>
@@ -163,22 +157,6 @@
              <widget class="QLabel" name="label_2">
               <property name="text">
                <string>Пояснение к ответу</string>
-              </property>
-             </widget>
-            </item>
-            <item row="4" column="0" colspan="3">
-             <widget class="QTextEdit" name="explanationTextTextEdit">
-              <property name="minimumSize">
-               <size>
-                <width>0</width>
-                <height>51</height>
-               </size>
-              </property>
-              <property name="sizeIncrement">
-               <size>
-                <width>0</width>
-                <height>102</height>
-               </size>
               </property>
              </widget>
             </item>
@@ -219,6 +197,22 @@
               </property>
               <property name="text">
                <string>*Изображение отсутствует*</string>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="0" colspan="3">
+             <widget class="QTextEdit" name="explanationTextTextEdit">
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>102</height>
+               </size>
+              </property>
+              <property name="sizeIncrement">
+               <size>
+                <width>0</width>
+                <height>102</height>
+               </size>
               </property>
              </widget>
             </item>

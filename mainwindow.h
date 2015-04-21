@@ -23,6 +23,9 @@
 #include "settings.h"
 #include "checkbox.h"
 #include "radio.h"
+#include "sequence.h"
+#include "matching.h"
+#include "short.h"
 
 namespace Ui {
 class MainWindow;
@@ -33,7 +36,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
     int countQuestions;
     QMap<QString,Question*> questions;
-    QMap<int, Answer*> answers;
+    QMap<int, Answer *> answers;
     Question* curQues;
     QString curText;
     Settings* sets=new Settings();
@@ -44,7 +47,7 @@ class MainWindow : public QMainWindow
     //QSignalMapper *signalMapper = new QSignalMapper(this);
 public:
     explicit MainWindow(QWidget *parent = 0);
-    ~MainWindow();
+    void doingsAfterReselectingOrCreating();
     void clearLayout();
     void addQuestion(QString);
     void loadData();
@@ -56,6 +59,12 @@ public:
                            //const QString& strPhone,
                            //const QString& strEmail
                            );
+    QDomElement makeElement( QDomDocument& domDoc,
+                             const QString& strName,
+                             const QString& strText = QString(),
+                             const QString& strAttr = QString(),
+                             const QString& strAttrValue = QString()
+                            );
     void setImageLabel(QString);
 
     void generateAnswers(int);
@@ -65,22 +74,35 @@ public:
     void generateMatching();
     void generateShort();
 
-
+    ~MainWindow();
 
 private slots:
     void on_addQuestionButton_clicked();
+
     void on_deleteQuestionButton_clicked();
+
     void on_questionTypeComboBox_activated(int index);
+
     void on_questionTextTextEdit_textChanged();
+
     void on_explanationTextTextEdit_textChanged();
+
     void on_questionsListWidget_clicked();
+
     void on_limitedTimeTimeEdit_timeChanged(const QTime &time);
+
     void on_compileTestButton_released();
+
     void on_insertImage_clicked();
+
     void on_falseOrderAnswers_toggled(bool checked);
+
     void on_falseOrderQuestion_toggled(bool checked);
+
     void on_addAnswerButton_released();
+
     void on_numberOfQuestionsSpinBox_valueChanged(int arg1);
+
 
 
 

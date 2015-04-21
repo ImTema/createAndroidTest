@@ -1,12 +1,6 @@
 #ifndef RADIO_H
 #define RADIO_H
 
-#include <QHBoxLayout>
-#include <QLineEdit>
-#include <QRadioButton>
-#include <QSpinBox>
-#include <QLabel>
-#include <QDebug>
 #include "answer.h"
 
 class Radio : public Answer

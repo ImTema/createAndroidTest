@@ -1,29 +1,25 @@
-#ifndef CHECKBOX_H
-#define CHECKBOX_H
+#ifndef SHORT_H
+#define SHORT_H
 
 
 #include "answer.h"
 
-class Checkbox : public Answer
+class Short : public Answer
 {
     Q_OBJECT
 public:
-    explicit Checkbox(QWidget *parent, QLayout *layout, int id=0);
-    ~Checkbox();
+    explicit Short(QWidget *parent, QLayout *layout, int id=0);
+    ~Short();
 
     int getPrice() const;
     void setPrice(int value);
-
-    bool getCorrect() const;
-    void setCorrect(bool value);
 
     QString getAnswerText() const;
     void setAnswerText(const QString &value);
 
 private:
     QString answerText;
-    bool correct;
-    int price;
+    int price=1;
     QHBoxLayout *answer = new QHBoxLayout(this);
 signals:
 
@@ -31,4 +27,4 @@ public slots:
     void on_answerTextChanged(const QString&);
 };
 
-#endif // CHECKBOX_H
+#endif // SHORT_H

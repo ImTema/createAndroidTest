@@ -30,7 +30,7 @@ public:
     ~Question();
 
 private:
-    QMap<int, Answer*> answers;
+    QMap<int, Answer *> answers;
     QString questionText;
     QString answerExplanation;
     int questionType;

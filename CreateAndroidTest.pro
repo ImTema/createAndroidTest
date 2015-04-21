@@ -20,7 +20,10 @@ SOURCES += main.cpp\
     dialog.cpp \
     checkbox.cpp \
     answer.cpp \
-    radio.cpp
+    radio.cpp \
+    sequence.cpp \
+    matching.cpp \
+    short.cpp
 
 HEADERS  += mainwindow.h \
     question.h \
@@ -28,7 +31,10 @@ HEADERS  += mainwindow.h \
     dialog.h \
     checkbox.h \
     answer.h \
-    radio.h
+    radio.h \
+    sequence.h \
+    matching.h \
+    short.h
 
 FORMS    += mainwindow.ui \
     dialog.ui
