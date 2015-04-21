@@ -17,12 +17,18 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     question.cpp \
     settings.cpp \
-    dialog.cpp
+    dialog.cpp \
+    checkbox.cpp \
+    answer.cpp \
+    radio.cpp
 
 HEADERS  += mainwindow.h \
     question.h \
     settings.h \
-    dialog.h
+    dialog.h \
+    checkbox.h \
+    answer.h \
+    radio.h
 
 FORMS    += mainwindow.ui \
     dialog.ui

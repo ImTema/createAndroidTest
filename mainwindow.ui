@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>814</width>
+    <width>906</width>
     <height>465</height>
    </rect>
   </property>
@@ -14,489 +14,450 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QTabWidget" name="tabWidget">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>10</y>
-      <width>801</width>
-      <height>401</height>
-     </rect>
-    </property>
-    <property name="tabPosition">
-     <enum>QTabWidget::West</enum>
-    </property>
-    <property name="currentIndex">
-     <number>1</number>
-    </property>
-    <widget class="QWidget" name="tab">
-     <attribute name="title">
-      <string>Тест</string>
-     </attribute>
-     <widget class="QListWidget" name="questionsListWidget">
-      <property name="geometry">
-       <rect>
-        <x>9</x>
-        <y>30</y>
-        <width>251</width>
-        <height>331</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QScrollArea" name="scrollArea">
-      <property name="geometry">
-       <rect>
-        <x>270</x>
-        <y>30</y>
-        <width>491</width>
-        <height>331</height>
-       </rect>
-      </property>
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="sizeIncrement">
-       <size>
-        <width>0</width>
-        <height>0</height>
-       </size>
-      </property>
-      <property name="sizeAdjustPolicy">
-       <enum>QAbstractScrollArea::AdjustToContents</enum>
-      </property>
-      <property name="widgetResizable">
+   <layout class="QVBoxLayout" name="verticalLayout_2">
+    <item>
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="enabled">
        <bool>true</bool>
       </property>
-      <widget class="QWidget" name="scrollAreaWidgetContents">
-       <property name="geometry">
-        <rect>
-         <x>0</x>
-         <y>0</y>
-         <width>489</width>
-         <height>329</height>
-        </rect>
-       </property>
-       <widget class="QComboBox" name="questionTypeComboBox">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>10</y>
-          <width>161</width>
-          <height>22</height>
-         </rect>
-        </property>
-        <item>
-         <property name="text">
-          <string>Альтернативный вариант</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Один из многих</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Несколько из многих</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Соответствие</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Последовательность</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Свободный ввод</string>
-         </property>
-        </item>
-       </widget>
-       <widget class="QLabel" name="label">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>50</y>
-          <width>81</width>
-          <height>16</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Текст вопроса</string>
-        </property>
-       </widget>
-       <widget class="QTextEdit" name="questionTextTextEdit">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>70</y>
-          <width>471</width>
-          <height>51</height>
-         </rect>
-        </property>
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>471</width>
-          <height>51</height>
-         </size>
-        </property>
-        <property name="sizeAdjustPolicy">
-         <enum>QAbstractScrollArea::AdjustToContents</enum>
-        </property>
-        <property name="lineWrapColumnOrWidth">
-         <number>0</number>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_2">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>130</y>
-          <width>111</width>
-          <height>16</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Пояснение к ответу</string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_3">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>210</y>
-          <width>151</width>
-          <height>16</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Введите возможные ответы</string>
-        </property>
-       </widget>
-       <widget class="QTextEdit" name="explanationTextTextEdit">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>150</y>
-          <width>471</width>
-          <height>51</height>
-         </rect>
-        </property>
-       </widget>
-       <widget class="QWidget" name="verticalLayoutWidget">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>230</y>
-          <width>471</width>
-          <height>80</height>
-         </rect>
-        </property>
-        <layout class="QVBoxLayout" name="answersVLayout"/>
-       </widget>
-       <widget class="QLabel" name="imageLabel">
-        <property name="geometry">
-         <rect>
-          <x>200</x>
-          <y>10</y>
-          <width>151</width>
-          <height>21</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>*Изображение отсутствует*</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="insertImage">
-        <property name="geometry">
-         <rect>
-          <x>360</x>
-          <y>10</y>
-          <width>121</width>
-          <height>23</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Вставить картинку</string>
-        </property>
-       </widget>
-      </widget>
-     </widget>
-     <widget class="QPushButton" name="addQuestionButton">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>370</y>
-        <width>111</width>
-        <height>23</height>
-       </rect>
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>405</height>
+       </size>
       </property>
-      <property name="text">
-       <string>Добавить вопрос</string>
+      <property name="tabPosition">
+       <enum>QTabWidget::West</enum>
       </property>
-     </widget>
-     <widget class="QPushButton" name="deleteQuestionButton">
-      <property name="geometry">
-       <rect>
-        <x>160</x>
-        <y>370</y>
-        <width>101</width>
-        <height>23</height>
-       </rect>
+      <property name="currentIndex">
+       <number>0</number>
       </property>
-      <property name="text">
-       <string>Удалить вопрос</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="compileTestButton">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>0</y>
-        <width>91</width>
-        <height>23</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Собрать тест</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="addAnswerButton">
-      <property name="geometry">
-       <rect>
-        <x>270</x>
-        <y>370</y>
-        <width>101</width>
-        <height>23</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Добавить ответ</string>
-      </property>
-     </widget>
-    </widget>
-    <widget class="QWidget" name="tab_2">
-     <attribute name="title">
-      <string>Настройки</string>
-     </attribute>
-     <widget class="QWidget" name="widget" native="true">
-      <property name="geometry">
-       <rect>
-        <x>40</x>
-        <y>30</y>
-        <width>351</width>
-        <height>301</height>
-       </rect>
-      </property>
-      <widget class="QLabel" name="label_7">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>70</y>
-         <width>181</width>
-         <height>16</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Количество задаваемых вопросов</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="numberOfQuestionsLabel">
-       <property name="geometry">
-        <rect>
-         <x>90</x>
-         <y>90</y>
-         <width>21</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>1</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_6">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>10</y>
-         <width>131</width>
-         <height>16</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Ограничение по времени</string>
-       </property>
-      </widget>
-      <widget class="QTimeEdit" name="limitedTimeTimeEdit">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>30</y>
-         <width>71</width>
-         <height>22</height>
-        </rect>
-       </property>
-       <property name="displayFormat">
-        <string>H:mm:ss</string>
-       </property>
-      </widget>
-      <widget class="QSpinBox" name="numberOfQuestionsSpinBox">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>90</y>
-         <width>42</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="correctionMode">
-        <enum>QAbstractSpinBox::CorrectToNearestValue</enum>
-       </property>
-       <property name="minimum">
-        <number>1</number>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_9">
-       <property name="geometry">
-        <rect>
-         <x>70</x>
-         <y>90</y>
-         <width>20</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>/</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_12">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>250</y>
-         <width>111</width>
-         <height>16</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Система оценивания</string>
-       </property>
-      </widget>
-      <widget class="QComboBox" name="comboBox_2">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>270</y>
-         <width>201</width>
-         <height>22</height>
-        </rect>
-       </property>
-       <item>
-        <property name="text">
-         <string>Пользовательская</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>По умолчанию</string>
-        </property>
-       </item>
-      </widget>
-      <widget class="QGroupBox" name="orderQuestions">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>140</y>
-         <width>121</width>
-         <height>73</height>
-        </rect>
-       </property>
-       <property name="title">
-        <string>Порядок вопросов</string>
-       </property>
-       <layout class="QVBoxLayout" name="verticalLayout">
-        <item>
-         <widget class="QRadioButton" name="falseOrderQuestion">
+      <widget class="QWidget" name="tab">
+       <attribute name="title">
+        <string>Тест</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout">
+        <item row="0" column="0">
+         <widget class="QPushButton" name="compileTestButton">
           <property name="text">
-           <string>По очереди</string>
+           <string>Собрать тест</string>
           </property>
-          <property name="checked">
+         </widget>
+        </item>
+        <item row="1" column="0" colspan="2">
+         <widget class="QListWidget" name="questionsListWidget"/>
+        </item>
+        <item row="1" column="2">
+         <widget class="QScrollArea" name="scrollArea">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>582</width>
+            <height>313</height>
+           </size>
+          </property>
+          <property name="sizeIncrement">
+           <size>
+            <width>0</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="sizeAdjustPolicy">
+           <enum>QAbstractScrollArea::AdjustToContents</enum>
+          </property>
+          <property name="widgetResizable">
            <bool>true</bool>
           </property>
+          <widget class="QWidget" name="scrollAreaWidgetContents">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>580</width>
+             <height>321</height>
+            </rect>
+           </property>
+           <layout class="QGridLayout" name="gridLayout_2">
+            <item row="0" column="0">
+             <widget class="QComboBox" name="questionTypeComboBox">
+              <item>
+               <property name="text">
+                <string>Альтернативный вариант</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Один из многих</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Несколько из многих</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Соответствие</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Последовательность</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Свободный ввод</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item row="0" column="2">
+             <widget class="QPushButton" name="insertImage">
+              <property name="text">
+               <string>Вставить картинку</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLabel" name="label">
+              <property name="text">
+               <string>Текст вопроса</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="0" colspan="3">
+             <widget class="QTextEdit" name="questionTextTextEdit">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>471</width>
+                <height>51</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>102</height>
+               </size>
+              </property>
+              <property name="sizeAdjustPolicy">
+               <enum>QAbstractScrollArea::AdjustToContents</enum>
+              </property>
+              <property name="lineWrapColumnOrWidth">
+               <number>0</number>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="0">
+             <widget class="QLabel" name="label_2">
+              <property name="text">
+               <string>Пояснение к ответу</string>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="0" colspan="3">
+             <widget class="QTextEdit" name="explanationTextTextEdit">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>51</height>
+               </size>
+              </property>
+              <property name="sizeIncrement">
+               <size>
+                <width>0</width>
+                <height>102</height>
+               </size>
+              </property>
+             </widget>
+            </item>
+            <item row="5" column="0">
+             <widget class="QLabel" name="label_3">
+              <property name="text">
+               <string>Введите возможные ответы</string>
+              </property>
+             </widget>
+            </item>
+            <item row="6" column="0" colspan="3">
+             <widget class="QScrollArea" name="answersScrollArea">
+              <property name="verticalScrollBarPolicy">
+               <enum>Qt::ScrollBarAsNeeded</enum>
+              </property>
+              <property name="sizeAdjustPolicy">
+               <enum>QAbstractScrollArea::AdjustIgnored</enum>
+              </property>
+              <property name="widgetResizable">
+               <bool>true</bool>
+              </property>
+              <widget class="QWidget" name="answersScrollAreaWidgetContents">
+               <property name="geometry">
+                <rect>
+                 <x>0</x>
+                 <y>0</y>
+                 <width>560</width>
+                 <height>69</height>
+                </rect>
+               </property>
+              </widget>
+             </widget>
+            </item>
+            <item row="0" column="1" rowspan="2">
+             <widget class="QLabel" name="imageLabel">
+              <property name="cursor">
+               <cursorShape>PointingHandCursor</cursorShape>
+              </property>
+              <property name="text">
+               <string>*Изображение отсутствует*</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
          </widget>
         </item>
-        <item>
-         <widget class="QRadioButton" name="trueOrderQuestion">
+        <item row="2" column="0">
+         <widget class="QPushButton" name="addQuestionButton">
           <property name="text">
-           <string>Случайно</string>
+           <string>Добавить вопрос</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QPushButton" name="deleteQuestionButton">
+          <property name="text">
+           <string>Удалить вопрос</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="2">
+         <widget class="QPushButton" name="addAnswerButton">
+          <property name="text">
+           <string>Добавить ответ</string>
           </property>
          </widget>
         </item>
        </layout>
+       <zorder>questionsListWidget</zorder>
+       <zorder>scrollArea</zorder>
+       <zorder>addQuestionButton</zorder>
+       <zorder>deleteQuestionButton</zorder>
+       <zorder>compileTestButton</zorder>
+       <zorder>addAnswerButton</zorder>
       </widget>
-      <widget class="QGroupBox" name="orderAnswers">
-       <property name="geometry">
-        <rect>
-         <x>240</x>
-         <y>140</y>
-         <width>102</width>
-         <height>73</height>
-        </rect>
-       </property>
-       <property name="title">
-        <string>Порядок ответов</string>
-       </property>
-       <layout class="QVBoxLayout" name="verticalLayout_3">
-        <item>
-         <widget class="QRadioButton" name="falseOrderAnswers">
+      <widget class="QWidget" name="tab_2">
+       <attribute name="title">
+        <string>Настройки</string>
+       </attribute>
+       <widget class="QWidget" name="widget" native="true">
+        <property name="geometry">
+         <rect>
+          <x>40</x>
+          <y>30</y>
+          <width>391</width>
+          <height>301</height>
+         </rect>
+        </property>
+        <widget class="QLabel" name="label_7">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>70</y>
+           <width>181</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Количество задаваемых вопросов</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="numberOfQuestionsLabel">
+         <property name="geometry">
+          <rect>
+           <x>90</x>
+           <y>90</y>
+           <width>21</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>1</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_6">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>10</y>
+           <width>131</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Ограничение по времени</string>
+         </property>
+        </widget>
+        <widget class="QTimeEdit" name="limitedTimeTimeEdit">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>30</y>
+           <width>71</width>
+           <height>22</height>
+          </rect>
+         </property>
+         <property name="displayFormat">
+          <string>H:mm:ss</string>
+         </property>
+        </widget>
+        <widget class="QSpinBox" name="numberOfQuestionsSpinBox">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>90</y>
+           <width>42</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="correctionMode">
+          <enum>QAbstractSpinBox::CorrectToNearestValue</enum>
+         </property>
+         <property name="minimum">
+          <number>1</number>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_9">
+         <property name="geometry">
+          <rect>
+           <x>70</x>
+           <y>90</y>
+           <width>20</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>/</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_12">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>250</y>
+           <width>111</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Система оценивания</string>
+         </property>
+        </widget>
+        <widget class="QComboBox" name="gradeSystemSpinBox">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>270</y>
+           <width>201</width>
+           <height>22</height>
+          </rect>
+         </property>
+         <item>
           <property name="text">
-           <string>По порядку</string>
+           <string>Пользовательская</string>
           </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QRadioButton" name="trueOrderAnswers">
+         </item>
+         <item>
           <property name="text">
-           <string>Случайно</string>
+           <string>По умолчанию</string>
           </property>
-         </widget>
-        </item>
-       </layout>
+         </item>
+        </widget>
+        <widget class="QGroupBox" name="orderQuestions">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>140</y>
+           <width>121</width>
+           <height>73</height>
+          </rect>
+         </property>
+         <property name="title">
+          <string>Порядок вопросов</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout">
+          <item>
+           <widget class="QRadioButton" name="falseOrderQuestion">
+            <property name="text">
+             <string>По очереди</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QRadioButton" name="trueOrderQuestion">
+            <property name="text">
+             <string>Случайно</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QGroupBox" name="orderAnswers">
+         <property name="geometry">
+          <rect>
+           <x>240</x>
+           <y>140</y>
+           <width>121</width>
+           <height>73</height>
+          </rect>
+         </property>
+         <property name="title">
+          <string>Порядок ответов</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_3">
+          <item>
+           <widget class="QRadioButton" name="falseOrderAnswers">
+            <property name="text">
+             <string>По порядку</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QRadioButton" name="trueOrderAnswers">
+            <property name="text">
+             <string>Случайно</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </widget>
       </widget>
      </widget>
-     <widget class="QWidget" name="widget_5" native="true">
-      <property name="geometry">
-       <rect>
-        <x>380</x>
-        <y>120</y>
-        <width>100</width>
-        <height>58</height>
-       </rect>
-      </property>
-      <layout class="QVBoxLayout" name="verticalLayout_2"/>
-     </widget>
-    </widget>
-   </widget>
+    </item>
+   </layout>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>814</width>
+     <width>906</width>
      <height>21</height>
     </rect>
    </property>

@@ -6,6 +6,7 @@ Question::Question(QString s)
     this->questionText="";
     this->questionType=0;
     this->answerExplanation="";
+    this->fileName="";
 }
 void Question::setText(QString text){
     this->questionText=text;
@@ -53,3 +54,24 @@ Question::~Question()
 
 }
 
+
+QString Question::getFileName() const
+{
+    return fileName;
+}
+
+void Question::setFileName(const QString &value)
+{
+    fileName = value;
+}
+
+
+QMap<int, Answer *> Question::getAnswers() const
+{
+    return answers;
+}
+
+void Question::setAnswers(const QMap<int, Answer *> &value)
+{
+    answers = value;
+}
